@@ -23,7 +23,7 @@ cimport numpy as np
 cimport cython
 np.import_array()
 
-from numpy.math cimport INFINITY
+from libc.math cimport INFINITY as C_INFINITY
 
 
 ctypedef np.uint32_t uint32_t
@@ -528,7 +528,7 @@ class HiddenMarkovModel(object):
             # search for the best transition
             for state in range(num_states):
                 # reset the current viterbi variable
-                current_viterbi[state] = -INFINITY
+                current_viterbi[state] = -C_INFINITY
                 # get the observation model probability density value
                 # the om_pointers array holds pointers to the correct
                 # observation probability density value for the actual state
